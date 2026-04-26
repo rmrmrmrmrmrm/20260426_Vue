@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# --- 自分の作業用・メモ用 ---
+memo.html
+memo/
+temp/
