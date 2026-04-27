@@ -6,4 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   // GitHub Pagesやレンタルサーバーの公開ディレクトリ名に合わせてください
   base: '/20260426_Vue/hoge/',
+  build: {
+    outDir: 'docs', // GitHub Pagesでdocsフォルダを公開設定にしている場合
+  }
 })
