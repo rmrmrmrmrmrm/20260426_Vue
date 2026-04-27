@@ -7,6 +7,6 @@ export default defineConfig({
   // GitHub Pagesやレンタルサーバーの公開ディレクトリ名に合わせてください
   base: '/20260426_Vue/hoge/',
   build: {
-    outDir: 'docs', // GitHub Pagesでdocsフォルダを公開設定にしている場合
+    outDir: 'docs/hoge', // ビルドしたデータの出力先
   }
 })
