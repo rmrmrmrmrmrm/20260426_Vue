@@ -105,8 +105,15 @@ const restart = () => {
 }
 </script>
 
+<style>
+.app {
+    text-align: center;
+}
+</style>
+
+
 <template>
-    <div id="app">
+    <div id="app" class="app">
         <h1>骨格診断</h1>
 
         <!-- 診断中 -->
