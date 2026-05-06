@@ -266,6 +266,7 @@ const reset = () => {
 .description {
     width: 50%;
     padding: 0 0 0 2em;
+    text-align:left;
 }
 .description_info {
     display: flex;
@@ -278,18 +279,20 @@ const reset = () => {
     color: #888;
 }
 .description h3 {
+    font-size: 1.5em;
     margin: 0;
 }
 .meaning p {
     font-size: 0.9em;
-    margin: 10px 0;
-    border:solid 1px #ccc;
-    display:inline-block;
-    padding:1em 2em;
+    margin: 0 0 20px;
+    /*border:solid 1px #ccc;*/
+    /*display:inline-block;*/
+    /*padding:1em 2em;*/
 }
 .message {
-    font-size: 0.9em;
-    line-height: 1.6;
+    font-size: 0.85em;
+    line-height: 1.8;
+    color: #888;
 }
 @media (max-width:  600px) {
 .description {
@@ -323,12 +326,9 @@ const reset = () => {
                 <span>ここに説明文が出ます</span>
             </p>
             <div v-if="drawn">
-                <h3>{{ currentCard.name }}<span class="name_en"> / {{ currentCard.name_en }}</span></h3>
+                <h3>{{ currentCard.id }} {{ currentCard.name }}<span class="name_en"> / {{ currentCard.name_en }}</span></h3>
                 <div class="meaning">
-                    <p>
-                    <b><span v-if="isReversed">逆位置</span><span v-else>正位置</span>：</b>
-                    {{ descriptionText }}
-                    </p>
+                    <p><b><span v-if="isReversed">reverse</span><span v-else>upright</span>：</b>{{ descriptionText }}</p>
                 </div>
                 <p class="message" v-html="currentCard.message"></p>
             </div>
