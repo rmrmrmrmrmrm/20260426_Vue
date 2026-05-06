@@ -84,10 +84,6 @@ const productUrl = computed(() => {
 </script>
 
 <style>
-.app {
-    text-align: center;
-}
-
 .action a {
     display: inline-block;
     padding: 10px 16px;
@@ -143,10 +139,6 @@ th {
     font-weight: bold;
     background: #eee;
     text-align: center;
-}
-
-td {
-    /* width: 10%; */
 }
 </style>
 
