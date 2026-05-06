@@ -1,83 +1,230 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-// 1. 質問データ
-const questions = ref([
+// カード裏面画像
+const backImage = '/src/assets/tarot/tarot.png'
+
+// 22枚（例として数枚だけ中身を書いています）
+const cards = [
     {
-        text: "休日の過ごし方は？",
-        options: [
-            { text: "外でアクティブに動く", score: 10 },
-            { text: "家でのんびり過ごす", score: 0 }
-        ]
+        id: 0,
+        name: '愚者',
+        image: '/src/assets/tarot/tarot_00.png',
+        upright: '新しい始まり、自由、可能性',
+        reversed: '無計画、軽率、逃避'
     },
     {
-        text: "好きな食べ物は？",
-        options: [
-            { text: "こってりしたラーメン", score: 10 },
-            { text: "あっさりした和食", score: 0 }
-        ]
-    }
-])
-
-// 2. 診断結果データ
-const results = [
-    { threshold: 20, title: "エネルギッシュタイプ", desc: "あなたは活動的で食欲旺盛な人です。" },
-    { threshold: 10, title: "バランスタイプ", desc: "あなたは適度に楽しみ、落ち着いた人です。" },
-    { threshold: 0, title: "インドアタイプ", desc: "あなたは静かな環境を好む穏やかな人です。" }
+        id: 1,
+        name: '魔術師',
+        image: '/src/assets/tarot/tarot_01.png',
+        upright: '創造力、行動力、才能の発揮',
+        reversed: '詐欺、空回り、未熟'
+    },
+    {
+        id: 2,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_02.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 3,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_03.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 4,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_04.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 5,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_05.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 6,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_06.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 7,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_07.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 8,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_08.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 9,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_09.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 10,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_10.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 11,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_11.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 12,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_12.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 13,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_13.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 14,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_14.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 15,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_15.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 16,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_16.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 17,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_17.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 18,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_18.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 19,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_19.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 20,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_20.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
+    {
+        id: 21,
+        name: '女教皇',
+        image: '/src/assets/tarot/tarot_21.png',
+        upright: '直感、知性、冷静',
+        reversed: '無気力、疑念、閉鎖的'
+    },
 ]
 
-// 状態管理
-const currentIndex = ref(0) // 現在の質問番号
-const totalScore = ref(0)   // 合計スコア
-const isFinished = ref(false) // 終了フラグ
+// 状態
+const drawn = ref(false)
+const currentCard = ref(null)
+const isReversed = ref(false)
 
-// 回答時の処理
-const answer = (score) => {
-    totalScore.value += score
-
-    if (currentIndex.value < questions.value.length - 1) {
-        currentIndex.value++
-    } else {
-        isFinished.value = true
-    }
+// 抽選処理
+const drawCard = () => {
+    const index = Math.floor(Math.random() * cards.length)
+    currentCard.value = cards[index]
+    isReversed.value = Math.random() < 0.5
+    drawn.value = true
 }
 
-// スコアに基づいた診断結果の算出
-const diagnosisResult = computed(() => {
-    return results.find(r => totalScore.value >= r.threshold) || results[results.length - 1]
+// 表示テキスト
+const descriptionText = computed(() => {
+    if (!currentCard.value) return ''
+    return isReversed.value
+        ? currentCard.value.reversed
+        : currentCard.value.upright
 })
 
+// 2. 診断結果データ
+
+// 状態管理
+
+// 回答時の処理
+
+// スコアに基づいた診断結果の算出
+
 // リセット処理
-const restart = () => {
-    currentIndex.value = 0
-    totalScore.value = 0
-    isFinished.value = false
-}
 </script>
 
+<style>
+.app {
+    text-align: center;
+}
+</style>
+
 <template>
-    <div id="app">
+    <div id="app" class="app">
         <h1>今日の占い</h1>
 
         <!-- 診断中 -->
-        <div v-if="!isFinished">
-            <p>質問 {{ currentIndex + 1 }} / {{ questions.length }}</p>
-            <h2>{{ questions[currentIndex].text }}</h2>
-
-            <div v-for="(option, index) in questions[currentIndex].options" :key="index">
-                <button @click="answer(option.score)">
-                    {{ option.text }}
-                </button>
-            </div>
-        </div>
+        <button @click="drawCard">カードを引く</button>
 
         <!-- 診断完了 -->
-        <div v-else>
-            <h2>結果: {{ diagnosisResult.title }}</h2>
-            <p>{{ diagnosisResult.desc }}</p>
-            <hr>
-            <p>合計スコア: {{ totalScore }}</p>
-            <button @click="restart">最初からやり直す</button>
+        <div class="card-area">
+            <!-- 未抽選時は裏面 -->
+            <img v-if="!drawn" :src="backImage" class="card" alt="card back" />
+
+            <!-- 抽選後は表面（正逆あり） -->
+            <img v-else :src="currentCard.image" :class="['card', { reversed: isReversed }]" :alt="currentCard.name" />
         </div>
+
+        <!-- 説明テキスト -->
+        <div v-if="drawn" class="description">
+            <h3>
+                {{ currentCard.name }}
+                <span v-if="isReversed">（逆位置）</span>
+                <span v-else>（正位置）</span>
+            </h3>
+            <p>{{ descriptionText }}</p>
+        </div>
+
     </div>
 </template>
